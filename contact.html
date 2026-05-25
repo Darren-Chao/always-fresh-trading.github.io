@@ -17,6 +17,9 @@
   
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="index.css">
+  
+  <!-- Translations -->
+  <script src="translations.js"></script>
 </head>
 <body>
 
@@ -32,16 +35,23 @@
       
       <!-- Balanced Navigation Menu Links -->
       <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="catalog.html" class="nav-link">Catalog</a></li>
-        <li><a href="logistics.html" class="nav-link">Logistics</a></li>
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="catalog.html" class="nav-link" data-i18n="nav.catalog">Catalog</a></li>
+        <li><a href="logistics.html" class="nav-link" data-i18n="nav.logistics">Logistics</a></li>
       </ul>
       
-      <!-- Primary Action CTA Button (Far-Right - Active) -->
+      <!-- Primary Action CTA Button (Far-Right) -->
       <div class="nav-actions">
-        <a href="contact.html" class="nav-cta-btn" style="background-color: var(--primary-dark); box-shadow: 0 4px 12px -3px var(--primary-dark);">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+          <span class="lang-div">|</span>
+          <button class="lang-btn" onclick="setLanguage('zh-TW')">繁</button>
+          <span class="lang-div">|</span>
+          <button class="lang-btn" onclick="setLanguage('zh-CN')">简</button>
+        </div>
+        <a href="contact.html" class="nav-cta-btn active">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <span>Contact Us</span>
+          <span data-i18n="nav.contact">Contact Us</span>
         </a>
       </div>
       
@@ -59,10 +69,10 @@
          2. STANDALONE CONTACT HEADER
          ========================================================================== -->
     <header class="contact-header">
-      <div class="container">
-        <span class="section-title"><span class="badge" style="margin-bottom:0.5rem;">Sourcing Desk</span></span>
-        <h1>Talk Directly to Our Team</h1>
-        <p>Need to set up a regular wholesale delivery or discuss crop sourcing? Give our team a call or send us a message below. We are here to help.</p>
+      <div class="container" style="max-width: 800px; text-align: center;">
+        <span class="section-title"><span class="badge" style="margin-bottom:0.5rem;" data-i18n="contact.badge">Sourcing Desk</span></span>
+        <h1 data-i18n="contact.title">Talk Directly to Our Team</h1>
+        <p data-i18n="contact.subtitle">Need to set up a regular wholesale delivery or discuss crop sourcing? Give our team a call or send us a message below. We are here to help.</p>
       </div>
     </header>
 
@@ -72,232 +82,178 @@
     <section class="contact" style="padding-top: 0;">
       <div class="container contact-grid">
         
-        <!-- Left Side: Interactive B2B Sourcing / Buying Form -->
-        <div class="contact-form-card" style="margin-top: -2rem; position: relative; z-index: 10;">
-          <!-- Tabs selection -->
-          <div class="form-toggle-tabs">
-            <button class="form-tab-btn active" id="tab-clients" aria-label="Wholesale Buyer Request Form">Wholesale Buyer Inquiry</button>
-            <button class="form-tab-btn" id="tab-suppliers" aria-label="Farm Supplier Sourcing Form">Grower &amp; Supplier Partner</button>
+        <!-- Form Container Column -->
+        <div class="contact-form-wrapper">
+          <div class="contact-tabs">
+            <button class="contact-tab-btn active" data-form="client" data-i18n="contact.tab_client">Wholesale Buyer Inquiry</button>
+            <button class="contact-tab-btn" data-form="supplier" data-i18n="contact.tab_supplier">Grower &amp; Supplier Partner</button>
           </div>
           
-          <!-- CLIENT WHOLESALE FORM -->
-          <div class="inquiry-form-section active" id="form-clients">
-            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Wholesale Procurement</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
-              Request a quote or set up a regular wholesale delivery schedule for your grocery store, market, or restaurant network.
-            </p>
+          <!-- Form 1: Client/Buyer Form -->
+          <form id="clientForm" class="inquiry-form active-form">
+            <h3 data-i18n="contact.client_title" style="margin-bottom: 0.5rem; font-size: 1.5rem; font-family:'Outfit', sans-serif;">Wholesale Procurement</h3>
+            <p data-i18n="contact.client_sub" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Request a quote or set up a regular wholesale delivery schedule for your grocery store, market, or restaurant network.</p>
             
-            <form id="actual-form-clients" class="inquiry-form-section active">
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="c-name">Full Name *</label>
-                  <input type="text" id="c-name" class="form-input" required placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                  <label for="c-company">Business / Company Name *</label>
-                  <input type="text" id="c-company" class="form-input" required placeholder="Always Fresh Markets LLC">
-                </div>
-              </div>
-              
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="c-email">Business Email *</label>
-                  <input type="email" id="c-email" class="form-input" required placeholder="procurement@freshmarkets.com">
-                </div>
-                <div class="form-group">
-                  <label for="c-phone">Phone Number *</label>
-                  <input type="tel" id="c-phone" class="form-input" required placeholder="(213) 555-0198">
-                </div>
-              </div>
-              
+            <div class="form-row-2">
               <div class="form-group">
-                <label for="c-type">Business Operations Category *</label>
-                <select id="c-type" class="form-select" required>
-                  <option value="" disabled selected>Select business type...</option>
-                  <option value="supermarket">Supermarket / Multi-Store Retailer</option>
-                  <option value="independent-grocery">Independent Grocery Store</option>
-                  <option value="foodservice">Food Service / Central Kitchen</option>
-                  <option value="restaurant">Restaurant Group / Catering</option>
-                  <option value="wholesale-distributor">Wholesale Distributor</option>
-                </select>
+                <label for="c_name" data-i18n="contact.s_name">Full Name *</label>
+                <input type="text" id="c_name" required>
               </div>
-              
               <div class="form-group">
-                <label for="c-volume">Estimated Weekly Volume Requirement *</label>
-                <select id="c-volume" class="form-select" required>
-                  <option value="" disabled selected>Select volume range...</option>
-                  <option value="1-3-pallets">1 to 3 Pallets / Week</option>
-                  <option value="4-10-pallets">4 to 10 Pallets / Week</option>
-                  <option value="11-plus-pallets">11+ Pallets / Week</option>
-                  <option value="truckload-volume">FCL Full Truckload Sourcing</option>
-                </select>
+                <label for="c_company" data-i18n="contact.s_company">Business / Company Name *</label>
+                <input type="text" id="c_company" required>
               </div>
-              
-              <div class="form-group">
-                <label for="c-message">Specific Produce &amp; Packing Requirements</label>
-                <textarea id="c-message" class="form-textarea" placeholder="Please list specific produce items (e.g. Romaine Hearts, Shanghai Bok Choy, Oranges) and your preferred wholesale packaging..."></textarea>
-              </div>
-              
-              <label class="form-checkbox-group">
-                <input type="checkbox" required>
-                <span>I confirm that this is a business inquiry. Always Fresh Trading operates strictly as a wholesale supplier and does not sell direct-to-consumer. *</span>
-              </label>
-              
-              <button type="submit" class="form-btn-submit">
-                <span>Submit Inquiry</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
-            </form>
-            
-            <!-- Success banner -->
-            <div class="form-success-banner" id="success-clients">
-              <span class="success-emoji">🥬✅</span>
-              <h4>Wholesale Inquiry Received</h4>
-              <p>Thank you for reaching out to our team. We will look over your details and get back to you with wholesale pricing within 2 business hours.</p>
-              <button class="btn btn-secondary" onclick="resetWholesaleForm('clients')">Submit Another Inquiry</button>
             </div>
-          </div>
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="c_email" data-i18n="contact.s_email">Business Email *</label>
+                <input type="email" id="c_email" required>
+              </div>
+              <div class="form-group">
+                <label for="c_phone" data-i18n="contact.s_phone">Phone Number *</label>
+                <input type="tel" id="c_phone" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="c_type" data-i18n="contact.s_type">Business Operations Category *</label>
+              <select id="c_type" required>
+                <option value="" disabled selected data-i18n="contact.s_type_opt0">Select business type...</option>
+                <option value="supermarket" data-i18n="contact.s_type_opt1">Supermarket / Multi-Store Retailer</option>
+                <option value="independent" data-i18n="contact.s_type_opt2">Independent Grocery Store</option>
+                <option value="foodservice" data-i18n="contact.s_type_opt3">Food Service / Central Kitchen</option>
+                <option value="restaurant" data-i18n="contact.s_type_opt4">Restaurant Group / Catering</option>
+                <option value="distributor" data-i18n="contact.s_type_opt5">Wholesale Distributor</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="c_volume" data-i18n="contact.s_vol">Estimated Weekly Volume Requirement *</label>
+              <select id="c_volume" required>
+                <option value="" disabled selected data-i18n="contact.s_vol_opt0">Select volume range...</option>
+                <option value="small" data-i18n="contact.s_vol_opt1">1 to 3 Pallets / Week</option>
+                <option value="medium" data-i18n="contact.s_vol_opt2">4 to 10 Pallets / Week</option>
+                <option value="large" data-i18n="contact.s_vol_opt3">11+ Pallets / Week</option>
+                <option value="fcl" data-i18n="contact.s_vol_opt4">FCL Full Truckload Sourcing</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="c_message" data-i18n="contact.s_msg">Specific Produce &amp; Packing Requirements</label>
+              <textarea id="c_message" rows="4" placeholder="Please list specific produce items (e.g. Romaine Hearts, Shanghai Bok Choy, Oranges) and your preferred wholesale packaging..." data-i18n-placeholder="contact.s_msg_ph"></textarea>
+            </div>
+            
+            <div class="form-checkbox">
+              <input type="checkbox" id="c_confirm" required>
+              <label for="c_confirm" data-i18n="contact.s_check">I confirm that this is a business inquiry. Always Fresh Trading operates strictly as a wholesale supplier and does not sell direct-to-consumer. *</label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-i18n="contact.s_submit">Submit Inquiry</button>
+          </form>
           
-          <!-- SUPPLIER PARTNER FORM -->
-          <div class="inquiry-form-section" id="form-suppliers">
-            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Join Our Grower Network</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">
-              Partner with AFT to distribute your crops through our established Los Angeles shipping network.
-            </p>
+          <!-- Form 2: Supplier/Grower Form -->
+          <form id="supplierForm" class="inquiry-form">
+            <h3 data-i18n="contact.sup_title" style="margin-bottom: 0.5rem; font-size: 1.5rem; font-family:'Outfit', sans-serif;">Join Our Grower Network</h3>
+            <p data-i18n="contact.sup_sub" style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Partner with AFT to distribute your crops through our established Los Angeles shipping network.</p>
             
-            <form id="actual-form-suppliers" class="inquiry-form-section active">
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="s-name">Full Name *</label>
-                  <input type="text" id="s-name" class="form-input" required placeholder="Jane Smith">
-                </div>
-                <div class="form-group">
-                  <label for="s-farm">Farm / Operation Name *</label>
-                  <input type="text" id="s-farm" class="form-input" required placeholder="Golden Valley Farms Inc.">
-                </div>
-              </div>
-              
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="s-email">Contact Email *</label>
-                  <input type="email" id="s-email" class="form-input" required placeholder="contact@goldenvalleyfarms.com">
-                </div>
-                <div class="form-group">
-                  <label for="s-phone">Phone Number *</label>
-                  <input type="tel" id="s-phone" class="form-input" required placeholder="(661) 555-0211">
-                </div>
-              </div>
-              
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="s-location">Farm Sourcing Region *</label>
-                  <select id="s-location" class="form-select" required>
-                    <option value="" disabled selected>Select region...</option>
-                    <option value="central-valley">Central Valley, CA</option>
-                    <option value="salinas-valley">Salinas Valley, CA</option>
-                    <option value="imperial-valley">Imperial Valley / Desert, CA</option>
-                    <option value="ventura-oxnard">Ventura / Oxnard District, CA</option>
-                    <option value="mexico-import">Baja / Mainland Mexico</option>
-                    <option value="other-region">Other Agricultural Area</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="s-crops">Primary Crops Sourced *</label>
-                  <input type="text" id="s-crops" class="form-input" required placeholder="Bok Choy, Cilantro, Leafy Greens...">
-                </div>
-              </div>
-              
+            <div class="form-row-2">
               <div class="form-group">
-                <label for="s-cert">Food Safety &amp; QA Certifications *</label>
-                <select id="s-cert" class="form-select" required>
-                  <option value="" disabled selected>Select highest audit tier...</option>
-                  <option value="primusgfs">PrimusGFS Certified</option>
-                  <option value="globalgap">GlobalG.A.P. Certified</option>
-                  <option value="usda-organic">USDA Organic Certified Only</option>
-                  <option value="local-gap">USDA GAP/GHP Audited</option>
-                  <option value="pending-cert">Audits Pending / In Progress</option>
+                <label for="s_name" data-i18n="contact.s_name">Full Name *</label>
+                <input type="text" id="s_name" required>
+              </div>
+              <div class="form-group">
+                <label for="s_farm" data-i18n="contact.sup_farm">Farm / Operation Name *</label>
+                <input type="text" id="s_farm" required>
+              </div>
+            </div>
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="s_email" data-i18n="contact.s_email">Business Email *</label>
+                <input type="email" id="s_email" required>
+              </div>
+              <div class="form-group">
+                <label for="s_phone" data-i18n="contact.s_phone">Phone Number *</label>
+                <input type="tel" id="s_phone" required>
+              </div>
+            </div>
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="s_region" data-i18n="contact.sup_loc">Farm Sourcing Region *</label>
+                <select id="s_region" required>
+                  <option value="" disabled selected data-i18n="contact.sup_loc_opt0">Select region...</option>
+                  <option value="central" data-i18n="contact.sup_loc_opt1">Central Valley, CA</option>
+                  <option value="salinas" data-i18n="contact.sup_loc_opt2">Salinas Valley, CA</option>
+                  <option value="imperial" data-i18n="contact.sup_loc_opt3">Imperial Valley / Desert, CA</option>
+                  <option value="ventura" data-i18n="contact.sup_loc_opt4">Ventura / Oxnard District, CA</option>
+                  <option value="baja" data-i18n="contact.sup_loc_opt5">Baja / Mainland Mexico</option>
+                  <option value="other" data-i18n="contact.sup_loc_opt6">Other Agricultural Area</option>
                 </select>
               </div>
-              
               <div class="form-group">
-                <label for="s-message">Operation Sizing &amp; Packing Capabilities</label>
-                <textarea id="s-message" class="form-textarea" placeholder="Provide a brief summary of your packing facility, vacuum-cooling systems, and seasonal acreage..."></textarea>
+                <label for="s_crops" data-i18n="contact.sup_crops">Primary Crops Sourced *</label>
+                <input type="text" id="s_crops" required placeholder="e.g. Romaine, Carrots, Berries...">
               </div>
-              
-              <button type="submit" class="form-btn-submit">
-                <span>Submit Partnership Request</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
-            </form>
-            
-            <!-- Success banner -->
-            <div class="form-success-banner" id="success-suppliers">
-              <span class="success-emoji">🚜🌾</span>
-              <h4>Sourcing Request Logged</h4>
-              <p>Thank you for submitting your farm credentials. Our head agricultural broker will evaluate your crop details and call your packing office within 24 business hours.</p>
-              <button class="btn btn-secondary" onclick="resetWholesaleForm('suppliers')">Submit Another Sourcing Form</button>
             </div>
-          </div>
+            
+            <div class="form-group">
+              <label for="s_cert" data-i18n="contact.sup_cert">Food Safety &amp; QA Certifications *</label>
+              <select id="s_cert" required>
+                <option value="" disabled selected data-i18n="contact.sup_cert_opt0">Select highest audit tier...</option>
+                <option value="primus" data-i18n="contact.sup_cert_opt1">PrimusGFS Certified</option>
+                <option value="globalgap" data-i18n="contact.sup_cert_opt2">GlobalG.A.P. Certified</option>
+                <option value="organic" data-i18n="contact.sup_cert_opt3">USDA Organic Certified Only</option>
+                <option value="usda" data-i18n="contact.sup_cert_opt4">USDA GAP/GHP Audited</option>
+                <option value="pending" data-i18n="contact.sup_cert_opt5">Audits Pending / In Progress</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="s_details" data-i18n="contact.sup_msg">Operation Sizing &amp; Packing Capabilities</label>
+              <textarea id="s_details" rows="4" placeholder="Provide a brief summary of your packing facility, vacuum-cooling systems, and seasonal acreage..." data-i18n-placeholder="contact.sup_msg_ph"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" data-i18n="contact.sup_submit">Submit Partnership Request</button>
+          </form>
         </div>
         
-        <!-- Right Side: Business Coordinates, Hotline, & LA Map Component -->
-        <div class="contact-info-column" style="margin-top:-2rem;">
-          <!-- Info Details Box -->
-          <div class="contact-info-box" style="background:#fff; border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding:2rem; box-shadow:var(--shadow-sm);">
-            <h3 style="font-size: 1.5rem; font-family:'Outfit', sans-serif; margin-bottom:1rem;">Our Los Angeles Office</h3>
-            
-            <!-- Address -->
-            <div class="contact-info-item">
-              <div class="contact-info-icon">🏬</div>
-              <div class="contact-info-text">
-                <h4>Our Downtown LA Facility</h4>
-                <p>1338 E 6th Street<br>Los Angeles, CA 90021</p>
-              </div>
-            </div>
-            
-            <!-- Phone -->
-            <div class="contact-info-item" style="margin-top:0.75rem;">
-              <div class="contact-info-icon">📞</div>
-              <div class="contact-info-text">
-                <h4>Call Our Office Directly</h4>
-                <p><a href="tel:2135550198" style="font-weight:700; color:var(--primary);">(213) 555-0198</a></p>
-                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.1rem;">We answer our own phones—no automated routing.</p>
-              </div>
-            </div>
-            
-            <!-- Email -->
-            <div class="contact-info-item" style="margin-top:0.75rem;">
-              <div class="contact-info-icon">✉️</div>
-              <div class="contact-info-text">
-                <h4>Email Our Sourcing Team</h4>
-                <p><a href="mailto:sourcing@alwaysfreshtrading.com" style="color:var(--text-main); text-decoration: underline;">sourcing@alwaysfreshtrading.com</a></p>
-              </div>
-            </div>
-            
-            <!-- Business Hours -->
-            <div class="contact-info-item" style="margin-top:0.75rem;">
-              <div class="contact-info-icon">🕒</div>
-              <div class="contact-info-text">
-                <h4>Our Operating Hours</h4>
-                <p>Mon - Fri: 4:00 AM - 3:00 PM (PST)<br>Sat: 5:00 AM - 12:00 PM (Receiving Only)</p>
-              </div>
+        <!-- Contact Info & Map Side -->
+        <div class="contact-info-panel">
+          <h3 data-i18n="contact.info_title">Our Los Angeles Office</h3>
+          
+          <div class="info-block">
+            <div class="info-icon">📍</div>
+            <div class="info-text">
+              <h4 data-i18n="contact.info1_t">Our Downtown LA Facility</h4>
+              <p data-i18n="contact.info1_p">1338 E 6th Street<br>Los Angeles, CA 90021</p>
             </div>
           </div>
           
-          <!-- Styled CSS Map Placeholder -->
-          <div class="map-visual-placeholder">
-            <div class="map-grid-layer"></div>
-            <div class="map-river"></div>
-            <div class="map-freeway"></div>
-            
-            <!-- Glowing Map Pin -->
-            <div class="map-pin-container">
-              <div class="map-pin-pulse"></div>
-              <div class="map-pin-point"></div>
-              <div class="map-pin-label">🌿 Always Fresh <span>Hub</span></div>
+          <div class="info-block">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <h4 data-i18n="contact.info2_t">Call Our Office Directly</h4>
+              <p data-i18n="contact.info2_p">We answer our own phones—no automated routing.</p>
+              <a href="tel:2135550198" class="info-link">(213) 555-0198</a>
             </div>
-            
-            <div class="map-coordinates">34.0373° N, 118.2320° W</div>
+          </div>
+          
+          <div class="info-block">
+            <div class="info-icon">✉️</div>
+            <div class="info-text">
+              <h4 data-i18n="contact.info3_t">Email Our Sourcing Team</h4>
+              <a href="mailto:sourcing@alwaysfreshtrading.com" class="info-link">sourcing@alwaysfreshtrading.com</a>
+            </div>
+          </div>
+          
+          <div class="info-block">
+            <div class="info-icon">🕔</div>
+            <div class="info-text">
+              <h4 data-i18n="contact.info4_t">Our Operating Hours</h4>
+              <p data-i18n="contact.info4_p">Mon - Fri: 4:00 AM - 3:00 PM (PST)<br>Sat: 5:00 AM - 12:00 PM (Receiving Only)</p>
+            </div>
           </div>
         </div>
       </div>
@@ -317,32 +273,32 @@
           <div class="footer-logo">
             <span class="footer-logo-leaf">🌿</span>Always Fresh Trading
           </div>
-          <p>
-            We operate a hands-on produce cross-dock terminal in Downtown Los Angeles, connecting trusted farming valleys with supermarkets, grocery stores, and restaurant kitchens throughout Southern California.
+          <p data-i18n="footer.about_text">
+            Operating an active refrigerated distribution hub in Downtown Los Angeles. Bridging high-volume California farm growers with retail supermarkets, grocery chains, and restaurant operators.
           </p>
           <div class="footer-badges-list">
             <span class="footer-badge">FSMA Compliant</span>
-            <span class="footer-badge">PrimusGFS Certified</span>
-            <span class="footer-badge">PACA Licensed</span>
+            <span class="footer-badge">PrimusGFS Grade A</span>
+            <span class="footer-badge">PACAA License</span>
           </div>
         </div>
         
         <!-- Column 2 (Simplified Quick Links) -->
         <div class="footer-links-col">
-          <h4>Quick Links</h4>
+          <h4 data-i18n="footer.quick_links">Quick Links</h4>
           <ul class="footer-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="catalog.html">Produce Catalog</a></li>
-            <li><a href="logistics.html">Logistics Operations</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="catalog.html" data-i18n="nav.catalog">Produce Catalog</a></li>
+            <li><a href="logistics.html" data-i18n="nav.logistics">Logistics Operations</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
           </ul>
         </div>
         
         <!-- Column 3 (B2B Disclaimer) -->
         <div class="footer-links-col">
           <div class="footer-disclaimer-card">
-            <h4>⚠️ Wholesale Sourcing Disclaimer</h4>
-            <p>
+            <h4 data-i18n="footer.disclaimer_title">⚠️ Wholesale Sourcing Disclaimer</h4>
+            <p data-i18n="footer.disclaimer_text">
               Always Fresh Trading operates strictly as a B2B agricultural wholesale broker and logistics distributor. We supply raw commodities and palletized packing styles. We do not sell direct to consumers or process individual home deliveries.
             </p>
           </div>
@@ -351,7 +307,7 @@
       
       <!-- Footer Bottom Copyright Bar -->
       <div class="footer-bottom">
-        <div class="footer-copyright">
+        <div class="footer-copyright" data-i18n="footer.copyright">
           &copy; 2026 Always Fresh Trading (AFT) LLC. All rights reserved. Sourced reliably, delivered fresh. PACA License #20260481.
         </div>
       </div>

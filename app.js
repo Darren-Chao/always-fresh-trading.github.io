@@ -3,264 +3,52 @@
    ========================================================================== */
 
 // 1. PRODUCT CATALOG DATASET (Highly detailed B2B Sourcing Specs)
-const PRODUCE_CATALOG = [
-  // Vegetables
-  {
-    id: "carrots",
-    name: "Jumbo Carrots",
-    emoji: "🥕",
-    category: "vegetables",
-    desc: "Sweet, highly crisp premium orange carrots. Hand-harvested and sorted for size consistency. Excellent for grocery retail shelves, food processors, and heavy juicing operations.",
-    tags: ["organic", "local"],
-    packaging: "50 lb Sacks / 24-Count Bunched Bags",
-    temp: "32°F - 34°F (95% Humidity)",
-    season: "Year-Round (Peak: May - Nov)",
-    origin: "Kern County, California",
-    minOrder: "1 Pallet (1,600 lbs)"
-  },
-  {
-    id: "bell-peppers",
-    name: "Premium Bell Peppers",
-    emoji: "🫑",
-    category: "vegetables",
-    desc: "Thick-walled, blocky colored bell peppers (Green, Red, Yellow). Sourced from greenhouse and open-field growers. Carefully cooled immediately post-harvest to maximize retail shelf life.",
-    tags: ["local", "seasonal"],
-    packaging: "1-1/9 Bushel Carton (Approx. 28 lbs)",
-    temp: "45°F - 50°F (90% Humidity)",
-    season: "June - December",
-    origin: "Ventura County, California",
-    minOrder: "50 Cartons"
-  },
-  {
-    id: "bok-choy",
-    name: "Shanghai Baby Bok Choy",
-    emoji: "🥬",
-    category: "asian",
-    desc: "Tender, sweet stalks with vibrant jade green leaves. Premium high-density planting yields perfectly sized heads. Very popular with Asian grocery distributors and restaurant food services.",
-    tags: ["local", "organic"],
-    packaging: "30 lb Plastic Crate / Loose Pack",
-    temp: "32°F - 34°F (95% Humidity)",
-    season: "Year-Round (Peak: Mar - Oct)",
-    origin: "Santa Maria Valley, California",
-    minOrder: "40 Crates"
-  },
-  {
-    id: "broccoli",
-    name: "Crown Broccoli",
-    emoji: "🥦",
-    category: "vegetables",
-    desc: "Compact, dark green heads with tight beads and clean-cut stalks. Ice-packed immediately during field packing to secure freshness, firmness, and deep coloration.",
-    tags: ["local"],
-    packaging: "20 lb Carton / 14-Count Bunched Banded",
-    temp: "32°F (95% Humidity with Wet Ice)",
-    season: "Year-Round (Peak: Apr - Dec)",
-    origin: "Salinas Valley, California",
-    minOrder: "80 Cartons"
-  },
-  {
-    id: "cucumbers",
-    name: "English Seedless Cucumbers",
-    emoji: "🥒",
-    category: "vegetables",
-    desc: "Long, straight, dark green seedless cucumbers. Individually shrink-wrapped at origin to prevent moisture loss and skin damage during distribution. Crisp and refreshing texture.",
-    tags: ["imported"],
-    packaging: "12-Count Tray Carton",
-    temp: "50°F - 54°F (90% Humidity)",
-    season: "Year-Round (Imported)",
-    origin: "Baja California, Mexico",
-    minOrder: "100 Trays"
-  },
+let currentLanguage = localStorage.getItem('language') || 'en';
+let PRODUCE_CATALOG = typeof PRODUCE_CATALOG_DATA !== 'undefined' ? PRODUCE_CATALOG_DATA[currentLanguage] : [];
 
-  // Fruits
-  {
-    id: "oranges",
-    name: "Navel Oranges",
-    emoji: "🍊",
-    category: "fruits",
-    desc: "Sweet, juicy California navels with rich orange color and thin skins. High sugar-to-acid ratio makes them the standard for fresh retail and food service segments.",
-    tags: ["local", "seasonal"],
-    packaging: "4/5 Bushel Carton (Approx. 40 lbs)",
-    temp: "45°F - 48°F (90% Humidity)",
-    season: "November - May (Peak: Winter)",
-    origin: "Central Valley, California",
-    minOrder: "1 Pallet (40 Cartons)"
-  },
-  {
-    id: "mangoes",
-    name: "Kent & Tommy Mangoes",
-    emoji: "🥭",
-    category: "fruits",
-    desc: "Large, fragrant tropical mangoes with excellent skin coloration and highly sweet, fiberless golden flesh. Sourced from certified export orchards under cold-chain compliance.",
-    tags: ["imported", "seasonal"],
-    packaging: "Single Layer Flats (8-Count to 12-Count)",
-    temp: "54°F - 56°F (85% Humidity)",
-    season: "March - September",
-    origin: "Sinaloa, Mexico / Peru",
-    minOrder: "150 Flats"
-  },
-  {
-    id: "strawberries",
-    name: "Vibrant Strawberries",
-    emoji: "🍓",
-    category: "fruits",
-    desc: "Brilliant red, sweet, and firm strawberries with excellent conical shapes. Hand-harvested directly into clamshell packaging to ensure minimal touch points and zero bruising.",
-    tags: ["local", "organic"],
-    packaging: "8 x 1 lb Clamshell Carton (8 lbs total)",
-    temp: "32°F - 34°F (90% Humidity)",
-    season: "Year-Round (Peak: Apr - Aug)",
-    origin: "Watsonville & Oxnard, California",
-    minOrder: "108 Cartons (1 Pallet)"
-  },
-  {
-    id: "grapes",
-    name: "Red Seedless Grapes",
-    emoji: "🍇",
-    category: "fruits",
-    desc: "Crunchy, sweet, and plump red grapes (Allison & Crimson varieties). Hand-picked bunches with sturdy green stems and visible natural bloom, reflecting freshness and health.",
-    tags: ["local", "seasonal"],
-    packaging: "19 lb Carton / Zipped Bags",
-    temp: "30°F - 32°F (90% Humidity)",
-    season: "July - December",
-    origin: "San Joaquin Valley, California",
-    minOrder: "80 Cartons"
-  },
-  {
-    id: "watermelon",
-    name: "Seedless Watermelon",
-    emoji: "🍉",
-    category: "seasonal",
-    desc: "Large, crisp, and high-brix seedless watermelons. Exceptionally juicy with a bright red interior. Directly shipped in protective heavy-duty bulk bins.",
-    tags: ["local", "seasonal"],
-    packaging: "700 lb Octagonal Tri-Wall Cardboard Bin",
-    temp: "50°F - 60°F (85% Humidity)",
-    season: "May - September (Summer Peak)",
-    origin: "Imperial Valley, California",
-    minOrder: "1 Bin (Approx. 45-60 Melons)"
-  },
-
-  // Asian Produce & Herbs
-  {
-    id: "thai-basil",
-    name: "Fragrant Thai Basil",
-    emoji: "🌿",
-    category: "asian",
-    desc: "Highly aromatic anise-scented herbs with deep purple stems and narrow green leaves. Specially packaged in aerated bags to prevent blackening and leaf decay during logistics.",
-    tags: ["local", "organic"],
-    packaging: "10 lb Carton / Bunched Pack",
-    temp: "45°F - 50°F (85% Humidity)",
-    season: "Year-Round (Peak: Summer)",
-    origin: "Riverside County, California",
-    minOrder: "20 Cartons"
-  },
-  {
-    id: "lemongrass",
-    name: "Select Lemongrass",
-    emoji: "🌱",
-    category: "asian",
-    desc: "Firm, thick stalks with a vibrant citrusy aroma. Trimmed, washed, and sorted for standard kitchen prep convenience. Sourced from local specialist Asian growers.",
-    tags: ["local"],
-    packaging: "30 lb Carton / Trimmed Stalks",
-    temp: "40°F - 45°F (85% Humidity)",
-    season: "Year-Round",
-    origin: "Fresno County, California",
-    minOrder: "15 Cartons"
-  },
-  {
-    id: "chinese-chives",
-    name: "Flat Garlic Chives",
-    emoji: "🥬",
-    category: "asian",
-    desc: "Vibrant green garlic chives with soft, flat blades. Mild garlic flavor, popular in noodles and stir-fry mixes. Kept under strict temperature controls to avoid yellowing.",
-    tags: ["local"],
-    packaging: "20 lb Carton / Hand-Bunched",
-    temp: "32°F - 34°F (95% Humidity)",
-    season: "Year-Round",
-    origin: "Fresno County, California",
-    minOrder: "20 Cartons"
-  },
-  {
-    id: "daikon",
-    name: "Japanese Daikon Radish",
-    emoji: "🥕",
-    category: "asian",
-    desc: "Thick, long, pure white Japanese radishes. Firm, crisp roots with a sweet, mild crunch. Carefully washed and packed in cushioned flats to protect the smooth white skins.",
-    tags: ["local"],
-    packaging: "40 lb Carton / Extra-Large Graded",
-    temp: "32°F - 34°F (95% Humidity)",
-    season: "Year-Round (Peak: Winter)",
-    origin: "Central Valley, California",
-    minOrder: "30 Cartons"
-  },
-
-  // Leafy Greens
-  {
-    id: "romaine",
-    name: "Romaine Hearts",
-    emoji: "🥬",
-    category: "greens",
-    desc: "Crisp, sweet, and pale green hearts of Romaine. Field-trimmed, double-washed, and packed in clean cellophane sleeves for extreme sanitation and immediate retail display.",
-    tags: ["local", "organic"],
-    packaging: "12 x 3-Count Bagged Carton (36 Hearts)",
-    temp: "32°F - 34°F (95% Humidity)",
-    season: "Year-Round (Peak: Apr - Nov)",
-    origin: "Salinas Valley, California",
-    minOrder: "50 Cartons"
-  },
-  {
-    id: "spinach",
-    name: "Baby Spinach",
-    emoji: "🥬",
-    category: "greens",
-    desc: "Tender, dark green baby spinach leaves with zero stems. Tripled-washed in ozonated water and air-dried to guarantee clean, chemical-free food safety parameters.",
-    tags: ["organic", "local"],
-    packaging: "4 lb (4 x 1 lb) Loose Foodservice Bags",
-    temp: "32°F (95% Humidity)",
-    season: "Year-Round",
-    origin: "Salinas Valley, California",
-    minOrder: "40 Cartons"
-  },
-  {
-    id: "cilantro",
-    name: "Vibrant Cilantro",
-    emoji: "🌿",
-    category: "greens",
-    desc: "Pungent, dense leafy bunches of deep green cilantro. Clean, sturdy roots with minimal yellow leaves. Packaged with protective clean wet-ice layers for delivery.",
-    tags: ["local", "organic"],
-    packaging: "30 lb Ice-Pack Carton / 60 Bunches",
-    temp: "32°F (95% Humidity with Ice)",
-    season: "Year-Round",
-    origin: "Oxnard, California",
-    minOrder: "50 Cartons"
-  },
-
-  // Seasonal
-  {
-    id: "mandarins",
-    name: "Winter Gold Mandarins",
-    emoji: "🍊",
-    category: "seasonal",
-    desc: "Sweet, seedless, and easy-peel mandarins (Satsuma & Clementine). Bright orange skins and juicy segments, packaged in attractive mesh bags for consumer appeal.",
-    tags: ["local", "seasonal"],
-    packaging: "15 x 2 lb Mesh Bags in Master Case (30 lbs)",
-    temp: "40°F - 45°F (85% Humidity)",
-    season: "November - April (Winter)",
-    origin: "Tulare County, California",
-    minOrder: "60 Cases"
-  },
-  {
-    id: "cantaloupe",
-    name: "Athena Cantaloupes",
-    emoji: "🍈",
-    category: "seasonal",
-    desc: "Highly fragrant, sweet orange-flesh cantaloupes with heavy surface netting. Hand-selected at peak sugar content. Ideal for restaurant salad bars and supermarkets.",
-    tags: ["local", "seasonal"],
-    packaging: "9-Count / 12-Count Carton (Approx. 40 lbs)",
-    temp: "36°F - 40°F (90% Humidity)",
-    season: "May - October (Summer)",
-    origin: "Imperial Valley, California",
-    minOrder: "80 Cartons"
+window.setLanguage = function(lang) {
+  currentLanguage = lang;
+  localStorage.setItem('language', lang);
+  if (typeof PRODUCE_CATALOG_DATA !== 'undefined') {
+    PRODUCE_CATALOG = PRODUCE_CATALOG_DATA[currentLanguage];
   }
-];
+  
+  // Update UI text based on data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const keys = el.getAttribute('data-i18n').split('.');
+    let translation = TRANSLATIONS[lang];
+    keys.forEach(k => {
+      if (translation) translation = translation[k];
+    });
+    if (translation) el.innerHTML = translation;
+  });
+
+  // Update Placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const keys = el.getAttribute('data-i18n-placeholder').split('.');
+    let translation = TRANSLATIONS[lang];
+    keys.forEach(k => {
+      if (translation) translation = translation[k];
+    });
+    if (translation) el.placeholder = translation;
+  });
+  
+  // Update Active Button States
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelectorAll(`.lang-btn[onclick="setLanguage('${lang}')"]`).forEach(btn => {
+    btn.classList.add('active');
+  });
+
+  // Re-render Catalog if it exists
+  if (document.getElementById('catalogGrid') || document.querySelector('.catalog-grid')) {
+    if (typeof renderCatalog === 'function') {
+      renderCatalog();
+      if (typeof updateTabBadgeCounts === 'function') updateTabBadgeCounts();
+    }
+  }
+};
 
 // 2. DOM ELEMENTS SELECTORS
 const DOM = {
@@ -813,3 +601,10 @@ window.resetWholesaleForm = function(type) {
     submitBtn.disabled = false;
   }
 };
+
+// Initialize Language on Load
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof setLanguage === 'function') {
+    setLanguage(currentLanguage);
+  }
+});

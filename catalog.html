@@ -17,6 +17,9 @@
   
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="index.css">
+  
+  <!-- Translations -->
+  <script src="translations.js"></script>
 </head>
 <body>
 
@@ -32,16 +35,23 @@
       
       <!-- Balanced Navigation Menu Links -->
       <ul class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
-        <li><a href="catalog.html" class="nav-link active">Catalog</a></li>
-        <li><a href="logistics.html" class="nav-link">Logistics</a></li>
+        <li><a href="index.html" class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="catalog.html" class="nav-link active" data-i18n="nav.catalog">Catalog</a></li>
+        <li><a href="logistics.html" class="nav-link" data-i18n="nav.logistics">Logistics</a></li>
       </ul>
       
       <!-- Primary Action CTA Button (Far-Right) -->
       <div class="nav-actions">
+        <div class="lang-switcher">
+          <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+          <span class="lang-div">|</span>
+          <button class="lang-btn" onclick="setLanguage('zh-TW')">繁</button>
+          <span class="lang-div">|</span>
+          <button class="lang-btn" onclick="setLanguage('zh-CN')">简</button>
+        </div>
         <a href="contact.html" class="nav-cta-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-          <span>Contact Us</span>
+          <span data-i18n="nav.contact">Contact Us</span>
         </a>
       </div>
       
@@ -59,10 +69,11 @@
          2. STANDALONE BROWSE HEADER
          ========================================================================== -->
     <header class="catalog-header">
-      <div class="container">
-        <span class="section-title"><span class="badge" style="margin-bottom:0.5rem;">Produce Catalog</span></span>
-        <h1>Browse Our Produce Catalog</h1>
-        <p>Explore direct farm-sourced crops, select packing specifications, and view storage criteria. Every item is curated and backed by direct farm relationships.</p>
+      <div class="container" style="max-width: 800px;">
+      <div class="section-title">
+        <span class="badge" data-i18n="catalog.badge">Produce Catalog</span>
+        <h1 data-i18n="catalog.title">Browse Our Produce Catalog</h1>
+        <p data-i18n="catalog.subtitle">Explore direct farm-sourced crops, select packing specifications, and view storage criteria. Every item is curated and backed by direct farm relationships.</p>
       </div>
     </header>
 
@@ -74,22 +85,19 @@
         
         <!-- Search Controls -->
         <div class="catalog-controls">
-          <!-- Text Search field -->
-          <div class="search-wrapper">
-            <input type="text" class="search-input-field" placeholder="Search wholesale produce (e.g. bok choy, citrus, romaine, organic, Bakersfield...)" aria-label="Search wholesale produce">
-            <div class="search-icon-inside">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div class="catalog-filters">
+            <div class="search-bar">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="searchInput" placeholder="Search wholesale produce (e.g. bok choy, citrus, romaine, organic, Bakersfield...)" data-i18n-placeholder="catalog.search_placeholder">
             </div>
-          </div>
-          
-          <!-- Filtering Category Tab Buttons -->
-          <div class="category-tabs-container">
-            <button class="filter-tab-btn active" data-filter="all">All Produce <span class="tab-count">0</span></button>
-            <button class="filter-tab-btn" data-filter="vegetables">🥕 Vegetables <span class="tab-count">0</span></button>
-            <button class="filter-tab-btn" data-filter="fruits">🍊 Fruits <span class="tab-count">0</span></button>
-            <button class="filter-tab-btn" data-filter="asian">🥬 Asian Produce &amp; Herbs <span class="tab-count">0</span></button>
-            <button class="filter-tab-btn" data-filter="greens">🌿 Leafy Greens <span class="tab-count">0</span></button>
-            <button class="filter-tab-btn" data-filter="seasonal">🍉 Seasonal <span class="tab-count">0</span></button>
+            <div class="category-tabs-container">
+              <button class="filter-tab-btn active" data-filter="all">All Produce <span class="tab-count">0</span></button>
+              <button class="filter-tab-btn" data-filter="vegetables">🥕 Vegetables <span class="tab-count">0</span></button>
+              <button class="filter-tab-btn" data-filter="fruits">🍊 Fruits <span class="tab-count">0</span></button>
+              <button class="filter-tab-btn" data-filter="asian">🥬 Asian Produce &amp; Herbs <span class="tab-count">0</span></button>
+              <button class="filter-tab-btn" data-filter="greens">🌿 Leafy Greens <span class="tab-count">0</span></button>
+              <button class="filter-tab-btn" data-filter="seasonal">🍉 Seasonal <span class="tab-count">0</span></button>
+            </div>
           </div>
         </div>
         
@@ -115,32 +123,32 @@
           <div class="footer-logo">
             <span class="footer-logo-leaf">🌿</span>Always Fresh Trading
           </div>
-          <p>
-            We operate a hands-on produce cross-dock terminal in Downtown Los Angeles, connecting trusted farming valleys with supermarkets, grocery stores, and restaurant kitchens throughout Southern California.
+          <p data-i18n="footer.about_text">
+            Operating an active refrigerated distribution hub in Downtown Los Angeles. Bridging high-volume California farm growers with retail supermarkets, grocery chains, and restaurant operators.
           </p>
           <div class="footer-badges-list">
             <span class="footer-badge">FSMA Compliant</span>
-            <span class="footer-badge">PrimusGFS Certified</span>
-            <span class="footer-badge">PACA Licensed</span>
+            <span class="footer-badge">PrimusGFS Grade A</span>
+            <span class="footer-badge">PACAA License</span>
           </div>
         </div>
         
         <!-- Column 2 (Simplified Quick Links) -->
         <div class="footer-links-col">
-          <h4>Quick Links</h4>
+          <h4 data-i18n="footer.quick_links">Quick Links</h4>
           <ul class="footer-menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="catalog.html">Produce Catalog</a></li>
-            <li><a href="logistics.html">Logistics Operations</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="catalog.html" data-i18n="nav.catalog">Produce Catalog</a></li>
+            <li><a href="logistics.html" data-i18n="nav.logistics">Logistics Operations</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact Us</a></li>
           </ul>
         </div>
         
         <!-- Column 3 (B2B Disclaimer) -->
         <div class="footer-links-col">
           <div class="footer-disclaimer-card">
-            <h4>⚠️ Wholesale Sourcing Disclaimer</h4>
-            <p>
+            <h4 data-i18n="footer.disclaimer_title">⚠️ Wholesale Sourcing Disclaimer</h4>
+            <p data-i18n="footer.disclaimer_text">
               Always Fresh Trading operates strictly as a B2B agricultural wholesale broker and logistics distributor. We supply raw commodities and palletized packing styles. We do not sell direct to consumers or process individual home deliveries.
             </p>
           </div>
@@ -149,7 +157,7 @@
       
       <!-- Footer Bottom Copyright Bar -->
       <div class="footer-bottom">
-        <div class="footer-copyright">
+        <div class="footer-copyright" data-i18n="footer.copyright">
           &copy; 2026 Always Fresh Trading (AFT) LLC. All rights reserved. Sourced reliably, delivered fresh. PACA License #20260481.
         </div>
       </div>
@@ -176,53 +184,30 @@
       
       <!-- Modal Contents -->
       <div class="modal-body">
-        <div>
-          <h4 class="modal-desc-title">Crop Sourcing Description</h4>
-          <p class="modal-desc" id="modal-desc">
-            Vibrant, thick baby bok choy stalks with clean jade-green heads. Sourced from high-density organic Salinas Valley plantings. Double washed and immediately packed into sanitized, ventilated shipping lugs.
-          </p>
+        <div class="modal-body-content">
+          <div class="modal-section">
+            <h4 data-i18n="catalog.modal_desc_title">Crop Sourcing Description</h4>
+            <p id="modalDesc"></p>
+          </div>
+          <div class="modal-section">
+            <h4 data-i18n="catalog.modal_specs_title">Wholesale Procurement Specs</h4>
+            <ul class="modal-specs">
+              <li><strong data-i18n="catalog.modal_pack">Packaging Options:</strong> <span id="modalPack"></span></li>
+              <li><strong data-i18n="catalog.modal_temp">Transit Storage Temp:</strong> <span id="modalTemp"></span></li>
+              <li><strong data-i18n="catalog.modal_avail">Availability Peak:</strong> <span id="modalSeason"></span></li>
+              <li><strong data-i18n="catalog.modal_origin">Sourcing Region:</strong> <span id="modalOrigin"></span></li>
+              <li><strong data-i18n="catalog.modal_min">Minimum Purchase:</strong> <span id="modalMin"></span></li>
+            </ul>
+          </div>
+          <div class="modal-status">
+            <span class="status-dot"></span>
+            <span data-i18n="catalog.modal_status">Logistics Status:</span> <strong data-i18n="catalog.modal_live">Active Sourcing</strong>
+          </div>
         </div>
-        
-        <div>
-          <h4 class="modal-desc-title">Wholesale Procurement Specs</h4>
-          <table class="modal-specs-table">
-            <tbody>
-              <tr>
-                <td class="label-td">Packaging Options:</td>
-                <td class="val-td" id="spec-packing">30 lb Waxed Cartons / Bunched Sleeves</td>
-              </tr>
-              <tr>
-                <td class="label-td">Transit Storage Temp:</td>
-                <td class="val-td" id="spec-temp">32°F - 34°F (95% Humidity)</td>
-              </tr>
-              <tr>
-                <td class="label-td">Availability Peak:</td>
-                <td class="val-td" id="spec-season">Year-Round (Peak: May - September)</td>
-              </tr>
-              <tr>
-                <td class="label-td">Sourcing Region:</td>
-                <td class="val-td" id="spec-origin">Salinas Valley, California</td>
-              </tr>
-              <tr>
-                <td class="label-td">Minimum Purchase:</td>
-                <td class="val-td" id="spec-min-order">1 Pallet (48 Cartons)</td>
-              </tr>
-              <tr>
-                <td class="label-td">Logistics Status:</td>
-                <td class="val-td"><span class="status-live">Active Sourcing</span></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="modal-footer">
+          <p data-i18n="catalog.modal_call">Interested in this crop?</p>
+          <a href="contact.html" class="btn btn-primary" data-i18n="catalog.modal_req">Request Quote</a>
         </div>
-      </div>
-      
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <div class="modal-footer-hotline">
-          Interested in this crop?
-          <a href="tel:2135550198">(213) 555-0198</a>
-        </div>
-        <button class="modal-footer-action-btn" onclick="closeProductModal(); window.location.href='contact.html'">Request Quote</button>
       </div>
     </div>
   </div>
