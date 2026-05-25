@@ -1,0 +1,23 @@
+{
+  "name": "always-fresh-trading",
+  "version": "1.0.0",
+  "description": "B2B Landing Page Website for Always Fresh Trading (AFT) Produce Wholesale & Distribution",
+  "main": "index.html",
+  "scripts": {
+    "dev": "browser-sync start --server --files '*.html, *.css, *.js' --port 3000 --no-open --no-notify",
+    "start": "browser-sync start --server --files '*.html, *.css, *.js' --port 3000"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3"
+  },
+  "keywords": [
+    "aft",
+    "produce",
+    "wholesale",
+    "distribution",
+    "landing-page",
+    "b2b"
+  ],
+  "author": "Always Fresh Trading",
+  "license": "ISC"
+}
