@@ -211,9 +211,11 @@ section {
   line-height: 1;
 }
 
-.logo-leaf {
-  color: var(--accent-orange);
-  font-size: 1.5rem;
+.logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0.2rem;
 }
 
 .nav-menu {
@@ -2047,10 +2049,7 @@ section {
   color: #fff;
 }
 
-.footer-logo-leaf {
-  color: var(--accent-orange);
-  font-size: 1.5rem;
-}
+
 
 .footer-about p {
   color: var(--text-light);
