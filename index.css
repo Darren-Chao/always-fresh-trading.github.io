@@ -184,16 +184,31 @@ section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 800; /* Unified bold style */
-  color: var(--primary);
-  font-family: 'Outfit', sans-serif;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.logo span {
-  font-weight: 800; /* Unified bold style */
-  color: var(--text-main);
+.logo-text-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.logo-cn {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+.logo-en {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1;
 }
 
 .logo-leaf {
@@ -682,8 +697,8 @@ section {
 /* 4-Column Services Grid for Standalone Logistics Capabilities Page */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .service-card {
@@ -765,8 +780,8 @@ section {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  margin-top: -2rem;
-  margin-bottom: 3.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
@@ -865,8 +880,8 @@ section {
 /* Catalog Grid */
 .catalog-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
   min-height: 300px;
 }
 
@@ -878,8 +893,8 @@ section {
 .product-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  border-radius: var(--radius-sm);
+  padding: 1rem;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
@@ -906,7 +921,7 @@ section {
 }
 
 .product-visual-wrapper {
-  height: 120px;
+  height: 90px;
   background-color: var(--bg-alt);
   border-radius: var(--radius-md);
   display: flex;
@@ -1170,7 +1185,7 @@ section {
 }
 
 .why-card-item:nth-child(even) {
-  margin-left: 2rem;
+  margin-left: 0;
 }
 
 .why-card-icon {
@@ -1555,7 +1570,7 @@ section {
 
 .form-textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 90px;
 }
 
 .form-checkbox-group {
@@ -2022,14 +2037,13 @@ section {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 800; /* Unified bold style */
-  color: var(--primary-light);
-  font-family: 'Outfit', sans-serif;
 }
 
-.footer-logo span {
-  font-weight: 800; /* Unified bold style */
+.footer-logo .logo-cn {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-logo .logo-en {
   color: #fff;
 }
 
@@ -2476,34 +2490,9 @@ section {
     padding: 0.05rem 0.3rem;
   }
 
-  /* Crop Cards on mobile */
   .catalog-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  /* Mobile Horizontal Produce Card */
-  .product-card {
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 1.25rem !important;
-    padding: 1.1rem !important;
-  }
-  
-  .product-visual-wrapper {
-    width: 80px !important;
-    height: 80px !important;
-    font-size: 2.5rem !important;
-    margin-bottom: 0 !important;
-    flex-shrink: 0 !important;
-  }
-  
-  .product-card-right {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    gap: 0.2rem;
-    height: auto !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
   
   .product-desc {
@@ -2654,4 +2643,14 @@ section {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+}
+
+
+/* Hide empty emoji icon containers */
+.db-card-icon,
+.graphic-box-emoji,
+.service-icon-box,
+.logistics-card-emoji,
+.why-card-icon {
+  display: none !important;
 }

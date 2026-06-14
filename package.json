@@ -1,7 +1,7 @@
 {
   "name": "always-fresh-trading",
   "version": "1.0.0",
-  "description": "B2B Landing Page Website for Always Fresh Trading (AFT) Produce Wholesale & Distribution",
+  "description": "B2B Landing Page Website for Always Fresh 永鮮蔬果公司 (AFT) Produce Wholesale & Distribution",
   "main": "index.html",
   "scripts": {
     "dev": "browser-sync start --server --files '*.html, *.css, *.js' --port 3000 --no-open --no-notify",
@@ -18,6 +18,6 @@
     "landing-page",
     "b2b"
   ],
-  "author": "Always Fresh Trading",
+  "author": "Always Fresh 永鮮蔬果公司",
   "license": "ISC"
 }
